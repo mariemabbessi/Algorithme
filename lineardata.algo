@@ -1,0 +1,88 @@
+
+// solution 1
+ALGORITHM solution1
+VAR
+    ens1,ens2 : ARRAY_OF INTEGER[20];
+    i,j : INTEGER;
+    sum : INTEGER :=  0;
+    flag : BOOLEAN;
+BEGIN
+    
+    FOR i FROM 0 TO ens1.length-1 DO
+        flag := FALSE;
+        FOR j FROM 0 TO ens2.length-1 DO
+            IF(ens1[i] = ens2[j]) THEN
+                flag := TRUE;
+                BREAK;
+                
+            END
+            
+        END_FOR
+
+        
+        IF ( flag = FALSE) THEN
+            sum := sum + set1[i];
+        END_IF
+    END_FOR
+
+
+       FOR i FROM 0 TO ens2.length-1 DO
+        flag := FALSE;
+        FOR j FROM 0 TO ens1.length-1 DO
+            IF(ens2[i] = ens1[j]) THEN
+                flag := TRUE;
+                BREAK;
+            END
+        END_FOR
+        IF (flag = FALSE) THEN
+            sum := sum + set2[i];
+        END_IF
+    END_FOR
+
+    Write(sum);
+END
+
+
+// solution 2
+ALGORITHM solution2
+
+VAR
+    ens1,ens2 : ARRAY_OF INTEGER[];
+    dict := HASH_TABLE<INTEGER,INTEGER>;
+    i, count : INTEGER;
+    sum : INTEGER := 0;
+BEGIN
+    
+
+    FOR i FROM 0 TO ens1.length -1 STEP 1  DO
+        IF (dict.lookup(ens1[i]) = TRUE) THEN
+            count := dict.get(ens1[i]);
+            dict.insert(ens1[i],count+1);
+        ELSE
+            dict.insert(ens1[i],1);
+        END_IF
+    END_FOR
+
+    FOR i FROM 0 TO ens2.length -1 STEP 1  DO
+        IF (dict.lookup(ens2[i]) = TRUE) THEN
+            count := dict.get(ens2[i]);
+            dict.insert(ens2[i],count+1);
+        ELSE
+            dict.insert(ens2[i],1); 9 
+        END_IF
+    END_FOR
+
+    //get sum of distinct elements
+
+
+END
+
+
+
+
+
+
+
+
+
+
